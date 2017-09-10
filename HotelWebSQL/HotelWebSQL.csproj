@@ -172,6 +172,10 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="Users\Klient\KlientForm.aspx" />
+    <Content Include="Users\Klient\KlientRezerwuj.aspx" />
+    <Content Include="Users\Logowanie.aspx" />
+    <Content Include="Users\Pracownik\PracownikForm.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -204,6 +208,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -214,12 +219,42 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="Users\Klient\KlientForm.aspx.cs">
+      <DependentUpon>KlientForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Klient\KlientForm.aspx.designer.cs">
+      <DependentUpon>KlientForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Klient\KlientRezerwuj.aspx.cs">
+      <DependentUpon>KlientRezerwuj.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Klient\KlientRezerwuj.aspx.designer.cs">
+      <DependentUpon>KlientRezerwuj.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Logowanie.aspx.cs">
+      <DependentUpon>Logowanie.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Logowanie.aspx.designer.cs">
+      <DependentUpon>Logowanie.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Pracownik\PracownikForm.aspx.cs">
+      <DependentUpon>PracownikForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Pracownik\PracownikForm.aspx.designer.cs">
+      <DependentUpon>PracownikForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

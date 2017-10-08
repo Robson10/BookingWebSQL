@@ -1,0 +1,51 @@
+﻿@model HotelWebSqlMVC.Models.Osoba
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout - Copy.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Osoba</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.O_Imie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.O_Imie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.O_Nazwisko)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.O_Nazwisko)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.O_Mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.O_Mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.O_Tel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.O_Tel)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditKlienci", new { id = Model.O_ID }) |
+    @Html.ActionLink("Back to List", "IndexKlienci")
+</p>

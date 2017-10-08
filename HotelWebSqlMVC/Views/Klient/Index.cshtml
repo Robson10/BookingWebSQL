@@ -1,0 +1,54 @@
+﻿@model IEnumerable<HotelWebSqlMVC.Models.MyRezerwacjeItem>
+@{
+    ViewBag.Title = "Main";
+    Layout = "~/Views/Shared/_Layout - Klient.cshtml";
+}
+
+<h2>Twoje Rezerwacje</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OdKiedy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DoKiedy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nazwisko)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PokojNr)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => (item.OdKiedy))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => (item.DoKiedy))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwisko)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PokojNr)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "EditIndex", new { id=item.R_ID }) |
+                    @Html.ActionLink("Details", "DetailsIndex", new { id=item.R_ID }) |
+                    @Html.ActionLink("Delete", "DeleteIndex", new { id=item.R_ID })*@
+            </td>
+        </tr>
+    }
+
+</table>

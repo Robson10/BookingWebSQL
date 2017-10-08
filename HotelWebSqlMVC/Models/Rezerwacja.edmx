@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RezerwacjaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Osoba">
+          <Key>
+            <PropertyRef Name="O_ID" />
+          </Key>
+          <Property Name="O_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="O_Imie" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="O_Nazwisko" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="O_Mail" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="O_Tel" Type="varchar" MaxLength="1024" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pokoj">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_Nr" Type="int" Nullable="false" />
+          <Property Name="P_IluOsobowy" Type="int" Nullable="false" />
+          <Property Name="P_KosztDzienny" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="P_CzyGotowy" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Relationship_2">
+          <Key>
+            <PropertyRef Name="P_ID" />
+            <PropertyRef Name="R_ID" />
+          </Key>
+          <Property Name="P_ID" Type="int" Nullable="false" />
+          <Property Name="R_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rezerwacja">
+          <Key>
+            <PropertyRef Name="R_ID" />
+          </Key>
+          <Property Name="R_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="O_ID" Type="int" Nullable="false" />
+          <Property Name="R_Kiedy" Type="datetime" Nullable="false" />
+          <Property Name="R_NaKiedy" Type="datetime" Nullable="false" />
+          <Property Name="R_DoKiedy" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_RELATION_RELATIONS_POKOJ">
+          <End Role="Pokoj" Type="Self.Pokoj" Multiplicity="1" />
+          <End Role="Relationship_2" Type="Self.Relationship_2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pokoj">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="Relationship_2">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RELATION_RELATIONS_REZERWAC">
+          <End Role="Rezerwacja" Type="Self.Rezerwacja" Multiplicity="1" />
+          <End Role="Relationship_2" Type="Self.Relationship_2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rezerwacja">
+              <PropertyRef Name="R_ID" />
+            </Principal>
+            <Dependent Role="Relationship_2">
+              <PropertyRef Name="R_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REZERWAC_REZERWACJ_OSOBA">
+          <End Role="Osoba" Type="Self.Osoba" Multiplicity="1" />
+          <End Role="Rezerwacja" Type="Self.Rezerwacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Osoba">
+              <PropertyRef Name="O_ID" />
+            </Principal>
+            <Dependent Role="Rezerwacja">
+              <PropertyRef Name="O_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RezerwacjaModelStoreContainer">
+          <EntitySet Name="Osoba" EntityType="Self.Osoba" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pokoj" EntityType="Self.Pokoj" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Relationship_2" EntityType="Self.Relationship_2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rezerwacja" EntityType="Self.Rezerwacja" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_RELATION_RELATIONS_POKOJ" Association="Self.FK_RELATION_RELATIONS_POKOJ">
+            <End Role="Pokoj" EntitySet="Pokoj" />
+            <End Role="Relationship_2" EntitySet="Relationship_2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RELATION_RELATIONS_REZERWAC" Association="Self.FK_RELATION_RELATIONS_REZERWAC">
+            <End Role="Rezerwacja" EntitySet="Rezerwacja" />
+            <End Role="Relationship_2" EntitySet="Relationship_2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REZERWAC_REZERWACJ_OSOBA" Association="Self.FK_REZERWAC_REZERWACJ_OSOBA">
+            <End Role="Osoba" EntitySet="Osoba" />
+            <End Role="Rezerwacja" EntitySet="Rezerwacja" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RezerwacjaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Osoba">
+          <Key>
+            <PropertyRef Name="O_ID" />
+          </Key>
+          <Property Name="O_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="O_Imie" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="O_Nazwisko" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="O_Mail" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="O_Tel" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Rezerwacja" Relationship="Self.FK_REZERWAC_REZERWACJ_OSOBA" FromRole="Osoba" ToRole="Rezerwacja" />
+        </EntityType>
+        <EntityType Name="Pokoj">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_Nr" Type="Int32" Nullable="false" />
+          <Property Name="P_IluOsobowy" Type="Int32" Nullable="false" />
+          <Property Name="P_KosztDzienny" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="P_CzyGotowy" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Rezerwacja" Relationship="Self.Relationship_2" FromRole="Pokoj" ToRole="Rezerwacja" />
+        </EntityType>
+        <EntityType Name="Rezerwacja">
+          <Key>
+            <PropertyRef Name="R_ID" />
+          </Key>
+          <Property Name="R_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="O_ID" Type="Int32" Nullable="false" />
+          <Property Name="R_Kiedy" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="R_NaKiedy" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="R_DoKiedy" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Osoba" Relationship="Self.FK_REZERWAC_REZERWACJ_OSOBA" FromRole="Rezerwacja" ToRole="Osoba" />
+          <NavigationProperty Name="Pokoj" Relationship="Self.Relationship_2" FromRole="Rezerwacja" ToRole="Pokoj" />
+        </EntityType>
+        <Association Name="FK_REZERWAC_REZERWACJ_OSOBA">
+          <End Role="Osoba" Type="Self.Osoba" Multiplicity="1" />
+          <End Role="Rezerwacja" Type="Self.Rezerwacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Osoba">
+              <PropertyRef Name="O_ID" />
+            </Principal>
+            <Dependent Role="Rezerwacja">
+              <PropertyRef Name="O_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship_2">
+          <End Role="Pokoj" Type="Self.Pokoj" Multiplicity="*" />
+          <End Role="Rezerwacja" Type="Self.Rezerwacja" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="RezerwacjaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Osoba" EntityType="Self.Osoba" />
+          <EntitySet Name="Pokoj" EntityType="Self.Pokoj" />
+          <EntitySet Name="Rezerwacja" EntityType="Self.Rezerwacja" />
+          <AssociationSet Name="FK_REZERWAC_REZERWACJ_OSOBA" Association="Self.FK_REZERWAC_REZERWACJ_OSOBA">
+            <End Role="Osoba" EntitySet="Osoba" />
+            <End Role="Rezerwacja" EntitySet="Rezerwacja" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship_2" Association="Self.Relationship_2">
+            <End Role="Pokoj" EntitySet="Pokoj" />
+            <End Role="Rezerwacja" EntitySet="Rezerwacja" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RezerwacjaModelStoreContainer" CdmEntityContainer="RezerwacjaEntities">
+          <EntitySetMapping Name="Osoba">
+            <EntityTypeMapping TypeName="RezerwacjaModel.Osoba">
+              <MappingFragment StoreEntitySet="Osoba">
+                <ScalarProperty Name="O_ID" ColumnName="O_ID" />
+                <ScalarProperty Name="O_Imie" ColumnName="O_Imie" />
+                <ScalarProperty Name="O_Nazwisko" ColumnName="O_Nazwisko" />
+                <ScalarProperty Name="O_Mail" ColumnName="O_Mail" />
+                <ScalarProperty Name="O_Tel" ColumnName="O_Tel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pokoj">
+            <EntityTypeMapping TypeName="RezerwacjaModel.Pokoj">
+              <MappingFragment StoreEntitySet="Pokoj">
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="P_Nr" ColumnName="P_Nr" />
+                <ScalarProperty Name="P_IluOsobowy" ColumnName="P_IluOsobowy" />
+                <ScalarProperty Name="P_KosztDzienny" ColumnName="P_KosztDzienny" />
+                <ScalarProperty Name="P_CzyGotowy" ColumnName="P_CzyGotowy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rezerwacja">
+            <EntityTypeMapping TypeName="RezerwacjaModel.Rezerwacja">
+              <MappingFragment StoreEntitySet="Rezerwacja">
+                <ScalarProperty Name="R_ID" ColumnName="R_ID" />
+                <ScalarProperty Name="O_ID" ColumnName="O_ID" />
+                <ScalarProperty Name="R_Kiedy" ColumnName="R_Kiedy" />
+                <ScalarProperty Name="R_NaKiedy" ColumnName="R_NaKiedy" />
+                <ScalarProperty Name="R_DoKiedy" ColumnName="R_DoKiedy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Relationship_2" TypeName="RezerwacjaModel.Relationship_2" StoreEntitySet="Relationship_2">
+            <EndProperty Name="Pokoj">
+              <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+            </EndProperty>
+            <EndProperty Name="Rezerwacja">
+              <ScalarProperty Name="R_ID" ColumnName="R_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

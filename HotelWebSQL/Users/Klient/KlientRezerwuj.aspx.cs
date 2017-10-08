@@ -62,11 +62,11 @@ namespace HotelWebSQL.Users.Klient
         {
             if (PokojIluOsobowy.SelectedIndex == -1)
                 return;
-            var x = KalendarzOd.SelectedDate;
+            var x = KalendarzOd.calendar.SelectedDate;
             string RezerwacjaOd = "'" + x.Year + "." +
                                   ((x.Month < 10) ? ("0" + x.Month.ToString()) : x.Month.ToString()) + "." +
                                   ((x.Day < 10) ? "0" + x.Day.ToString() : x.Day.ToString()) + "'";
-            x = KalendarzDo.SelectedDate;
+            x = KalendarzDo.calendar.SelectedDate;
             string RezerwacjaDo = "'" + x.Year + "." +
                                   ((x.Month < 10) ? ("0" + x.Month.ToString()) : x.Month.ToString()) + "." +
                                   ((x.Day < 10) ? "0" + x.Day.ToString() : x.Day.ToString()) + "'";

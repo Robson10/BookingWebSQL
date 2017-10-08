@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 namespace HotelWebSQL.Users.Pracownik
 {
     public partial class PracownikForm : System.Web.UI.Page
@@ -58,7 +57,6 @@ namespace HotelWebSQL.Users.Pracownik
             {
                 RezerwacjeGrid.DataBind();
                 GridPokoje.Visible = false;
-
             }
         }
 

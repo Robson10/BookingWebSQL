@@ -1,0 +1,51 @@
+﻿@model HotelWebSqlMVC.Models.Pokoj
+
+@{
+    ViewBag.Title = "DetailsPokoje";
+    Layout = "~/Views/Shared/_Layout - Copy.cshtml";
+}
+
+<h2>DetailsPokoje</h2>
+
+<div>
+    <h4>Pokoj</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.P_Nr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.P_Nr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.P_IluOsobowy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.P_IluOsobowy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.P_KosztDzienny)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.P_KosztDzienny)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.P_CzyGotowy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.P_CzyGotowy)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditPokoje", new { id = Model.P_ID }) |
+    @Html.ActionLink("Back to List", "IndexPokoje")
+</p>

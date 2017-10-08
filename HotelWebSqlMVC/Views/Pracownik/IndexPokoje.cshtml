@@ -1,0 +1,52 @@
+﻿@model IEnumerable<HotelWebSqlMVC.Models.Pokoj>
+
+@{
+    ViewBag.Title = "IndexPokoje";
+    Layout = "~/Views/Shared/_Layout - Copy.cshtml";
+}
+
+<h2>IndexPokoje</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreatePokoje")
+</p>
+<table class="table" >
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.P_Nr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_IluOsobowy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_KosztDzienny)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_CzyGotowy)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.OrderBy(x=>x.P_Nr)) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_Nr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_IluOsobowy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_KosztDzienny)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_CzyGotowy)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditPokoje", new { id=item.P_ID }) |
+            @Html.ActionLink("Details", "DetailsPokoje", new { id=item.P_ID }) |
+            @Html.ActionLink("Delete", "DeletePokoje", new { id=item.P_ID })
+        </td>
+    </tr>
+}
+
+</table>

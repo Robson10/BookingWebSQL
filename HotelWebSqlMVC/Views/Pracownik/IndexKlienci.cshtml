@@ -1,0 +1,51 @@
+﻿@model IEnumerable<HotelWebSqlMVC.Models.Osoba>
+
+@{
+    ViewBag.Title = "IndexKlienci";
+    Layout = "~/Views/Shared/_Layout - Copy.cshtml";
+}
+
+<h2>Klienci</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateKlienci")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.O_Imie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.O_Nazwisko)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.O_Mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.O_Tel)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.O_Imie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.O_Nazwisko)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.O_Mail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.O_Tel)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditKlienci", new { id=item.O_ID }) |
+            @Html.ActionLink("Details", "DetailsKlienci", new { id=item.O_ID })
+        </td>
+    </tr>
+}
+
+</table>

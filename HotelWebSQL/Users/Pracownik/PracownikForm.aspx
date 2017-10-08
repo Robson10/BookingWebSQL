@@ -16,15 +16,15 @@
   </div>
 <br/>
 <div>
-    <asp:GridView ID="GridKlienci" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" Visible="False" CellPadding="4" ForeColor="#333333" GridLines="None" DataKeyNames="O_ID">
+    <asp:GridView ID="GridKlienci" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="EntityDataSource1" Visible="False" CellPadding="4" ForeColor="#333333" GridLines="None" DataKeyNames="O_ID">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowSelectButton="True" />
-            <asp:BoundField DataField="O_Imie" HeaderText="Imie" SortExpression="O_Imie" />
-            <asp:BoundField DataField="O_Nazwisko" HeaderText="Nazwisko" SortExpression="O_Nazwisko" />
-            <asp:BoundField DataField="O_Mail" HeaderText="Mail" SortExpression="O_Mail" />
-            <asp:BoundField DataField="O_Tel" HeaderText="Tel" SortExpression="O_Tel" />
-            <asp:BoundField DataField="O_ID" HeaderText="O_ID" InsertVisible="False" ReadOnly="True" SortExpression="O_ID" Visible="False" />
+            <asp:BoundField DataField="O_ID" HeaderText="O_ID" SortExpression="O_ID" ReadOnly="True" />
+            <asp:BoundField DataField="O_Imie" HeaderText="O_Imie" SortExpression="O_Imie" />
+            <asp:BoundField DataField="O_Nazwisko" HeaderText="O_Nazwisko" SortExpression="O_Nazwisko" />
+            <asp:BoundField DataField="O_Mail" HeaderText="O_Mail" SortExpression="O_Mail" />
+            <asp:BoundField DataField="O_Tel" HeaderText="O_Tel" SortExpression="O_Tel" />
         </Columns>
             
         <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
@@ -38,24 +38,8 @@
         <SortedDescendingHeaderStyle BackColor="#820000" />
             
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Database_1ConnectionString %>" SelectCommand="SELECT [O_Imie], [O_Nazwisko], [O_Mail], [O_Tel], [O_ID] FROM [Osoba]" DeleteCommand="DELETE FROM [Osoba] WHERE [O_ID] = @O_ID" InsertCommand="INSERT INTO [Osoba] ([O_Imie], [O_Nazwisko], [O_Mail], [O_Tel]) VALUES (@O_Imie, @O_Nazwisko, @O_Mail, @O_Tel)" UpdateCommand="UPDATE [Osoba] SET [O_Imie] = @O_Imie, [O_Nazwisko] = @O_Nazwisko, [O_Mail] = @O_Mail, [O_Tel] = @O_Tel WHERE [O_ID] = @O_ID">
-        <DeleteParameters>
-            <asp:Parameter Name="O_ID" Type="Int32" />
-        </DeleteParameters>
-        <InsertParameters>
-            <asp:Parameter Name="O_Imie" Type="String" />
-            <asp:Parameter Name="O_Nazwisko" Type="String" />
-            <asp:Parameter Name="O_Mail" Type="String" />
-            <asp:Parameter Name="O_Tel" Type="String" />
-        </InsertParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="O_Imie" Type="String" />
-            <asp:Parameter Name="O_Nazwisko" Type="String" />
-            <asp:Parameter Name="O_Mail" Type="String" />
-            <asp:Parameter Name="O_Tel" Type="String" />
-            <asp:Parameter Name="O_ID" Type="Int32" />
-        </UpdateParameters>
-    </asp:SqlDataSource>
+    <asp:EntityDataSource ID="EntityDataSource1" runat="server" ConnectionString="name=osobaEntities1" DefaultContainerName="osobaEntities1" EnableDelete="True" EnableFlattening="False" EnableInsert="True" EnableUpdate="True" EntitySetName="Osobas" EntityTypeFilter="Osoba">
+    </asp:EntityDataSource>
     <asp:GridView ID="RezerwacjeGrid" runat="server" Height="138px" Visible="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowCancelingEdit="RezerwacjeGrid_RowCancelingEdit" OnRowEditing="RezerwacjeGrid_RowEditing" OnRowUpdating="RezerwacjeGrid_RowUpdating">
         <AlternatingRowStyle BackColor="White" />
         <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />

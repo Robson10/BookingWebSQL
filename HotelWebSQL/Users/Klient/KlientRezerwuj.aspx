@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="KlientRezerwuj.aspx.cs" Inherits="HotelWebSQL.Users.Klient.KlientRezerwuj" %>
 
+<%@ Register assembly="HotelWebSQL" namespace="HotelWebSQL.Users" tagprefix="cc1" %>
+<%@ Register assembly="CustomCalendar" namespace="HotelWebSQL.Users" tagprefix="cc2" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,42 +11,31 @@
 </head>
 <body  style="background:lightgrey">
 <form id="form1" runat="server">
-    <div>
-        <div style="width:400px">
-            <center>Rezerwacja</center>
-            <div style="float:left">
-                <center>Od<br /></center>
-            <asp:Calendar ID="KalendarzOd" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
-                <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
-                <OtherMonthDayStyle ForeColor="#808080" />
-                <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
-                <SelectorStyle BackColor="#CCCCCC" />
-                <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
-                <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <WeekendDayStyle BackColor="#FFFFCC" />
-            </asp:Calendar>
+        <div style="width:100%">
+            Rezerwacja
+            <div>
+                <div>
+                    <table>
+                        <tr>
+                    <cc2:CustomCalendar ID="KalendarzOd" runat="server" ImageButtonImageUrl="E:\Programming\Hotel\HotelWebSQL\HotelWebSQL\Images\calendar.jpg" style="width:30px" labelText="Od"/>
+                            </tr>
+                        <tr>
+                           <cc2:CustomCalendar ID="KalendarzDo" runat="server" ImageButtonImageUrl="E:\Programming\Hotel\HotelWebSQL\HotelWebSQL\Images\calendar.jpg" style="width:30px" labelText="Do"/>
+                            </tr>
+                        </table>  
+
+                </div>
             </div>
-            <div style ="width: 200px; float:left">
-                <center>Do</center>
-            <asp:Calendar ID="KalendarzDo" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
-                <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
-                <OtherMonthDayStyle ForeColor="#808080" />
-                <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
-                <SelectorStyle BackColor="#CCCCCC" />
-                <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
-                <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                <WeekendDayStyle BackColor="#FFFFCC" />
-            </asp:Calendar>
-            </div>
-        <center>
+        </div>
+        <div>
+        <br />
             Pokoj:<asp:DropDownList ID="PokojIluOsobowy" runat="server" AutoPostBack="True" /> osobowy
             <br />
+            <br />
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             <asp:Button ID="Szukaj" runat="server" Text="Szukaj" OnClick="Szuakj_Click" style="border: none;font-size: 16px;color: wheat;background-color: dimgray;height:30px"/>
     
-        </center>
-       
-    </div>
-    </div>
+       </div>
     <br/>
     <div>
         <asp:GridView ID="Grid" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" >
@@ -66,10 +58,9 @@
 
     <br/>
     <div style="width: 400px;">
-        <center>
         <asp:Button ID="Zatwierdz" runat="server" Text="Zatwierdz" OnClick="Zatwierdz_Click" style="border: none;font-size: 16px;color: wheat;background-color: dimgray;height:30px"/>&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="Anuluj" runat="server" Text="Anuluj" OnClick="Anuluj_Click" style="border: none;font-size: 16px;color: wheat;background-color: dimgray;height:30px"/>
-        </center>
+
     </div>
 </form>
 </body>

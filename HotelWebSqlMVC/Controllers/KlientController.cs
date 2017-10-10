@@ -20,21 +20,95 @@ namespace HotelWebSqlMVC.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Rezerwacje(KlientRezerwacja newRezerwacja)
+        public ActionResult Rezerwacje(KlientRezerwacja newRezerwacja, string ConnectionString = @"Data Source=DESKTOP-M4NPT9R; Initial Catalog=Database_1;Integrated Security=SSPI")
         {
+            Session["RezerwacjaTextErr"] = "";
+            var isCorrect = true;
             if (ModelState.IsValid)
             {
-                newRezerwacja.O_ID=(int)Session["UserID"];
+                newRezerwacja.O_ID = (int)Session["UserID"];
                 newRezerwacja.Kiedy = DateTime.Now.ToShortDateString();
-                //sprawdzenie czy wolny pokoj
-                //_dbRezerwacja.Rezerwacja.Add(newRezerwacja);
-                //_dbRezerwacja.SaveChanges();
-                return RedirectToAction("Index");
+                if (DateTime.Parse(newRezerwacja.OdKiedy) < DateTime.Parse(newRezerwacja.Kiedy))
+                {
+                    Session["RezerwacjaTextErr"] += "Musisz dokonać rezerwacji na minimum 1 dzień na przód" + Environment.NewLine;
+                    isCorrect = false;
+                }
+                if (DateTime.Parse(newRezerwacja.OdKiedy) <= DateTime.Parse(newRezerwacja.Kiedy))
+                {
+                    Session["RezerwacjaTextErr"] += "Data zakończenia rezerwacji pokoju jest błędna" + Environment.NewLine;
+                    isCorrect = false;
+                }
+                if (DateTime.Parse(newRezerwacja.OdKiedy) >= DateTime.Parse(newRezerwacja.DoKiedy))
+                {
+                    Session["RezerwacjaTextErr"] += "Ilość rezerwowanych dni jest <= 0" + Environment.NewLine;
+                    isCorrect = false;
+                }
+                if (newRezerwacja.PokojID < 0)
+                {
+                    Session["RezerwacjaTextErr"] += "Podany nr pokoju nie istnieje" + Environment.NewLine;
+                    isCorrect = false;
+                }
+                if (!isCorrect)
+                {
+                    return View(newRezerwacja);
+                }
+                else
+                {
+                    var query = "";
+                    string RezerwacjaOd = DateToSqlStringDate(DateTime.Parse(newRezerwacja.OdKiedy));
+                    string RezerwacjaDo = DateToSqlStringDate(DateTime.Parse(newRezerwacja.DoKiedy));
+                    string RezerwacjaKiedy = DateToSqlStringDate(DateTime.Parse(newRezerwacja.Kiedy));
+                    query = "insert into Database_1.dbo.Rezerwacja(R_Kiedy, R_NaKiedy, R_DoKiedy, O_ID)" +
+                                "values(" + RezerwacjaKiedy + "," + RezerwacjaOd + "," + RezerwacjaDo + "," + (int)Session["UserID"] +
+                                ")";
+                    using (SqlConnection con = new SqlConnection(ConnectionString))
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+
+                        con.Open();
+                        SqlCommand command = new SqlCommand(query, con);
+                        command.ExecuteNonQuery();
+                        con.Close();
+                    }
+
+                    query = "select Rezerwacja.R_ID from Database_1.dbo.Rezerwacja where Rezerwacja.R_Kiedy = " +
+                        DateToSqlStringDate(DateTime.Parse(newRezerwacja.Kiedy)) + "";
+                    int idRezerwacji = -1;
+                    using (SqlConnection con = new SqlConnection(ConnectionString))
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        con.Open();
+                        string x = "-1";
+                        try { x = cmd.ExecuteScalar().ToString(); }
+                        catch { con.Close(); x = "-1"; }
+                        con.Close();
+                        idRezerwacji = Convert.ToInt32(x);
+                    }
+                    //dodanie jeszcze do asocjacji połaczenie z pokojem
+                    query = "insert into Database_1.dbo.Relationship_2(P_ID, R_ID)" +
+                            "values(" + newRezerwacja.PokojID + "," + idRezerwacji + ")";
+                    using (SqlConnection con = new SqlConnection(ConnectionString))
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+
+                        con.Open();
+                        SqlCommand command = new SqlCommand(query, con);
+                        command.ExecuteNonQuery();
+                        con.Close();
+                    }
+                    return RedirectToAction("Index");
+                }
             }
             else
             {
-                return View(newRezerwacja);//to samo dla błędnej daty lub błędnego pokoju (jako new view)
+                return View(newRezerwacja);
             }
+        }
+        private string DateToSqlStringDate(DateTime x)
+        {
+            return "'" + x.Year + "." +
+                  ((x.Month < 10) ? ("0" + x.Month.ToString()) : x.Month.ToString()) + "." +
+                  ((x.Day < 10) ? "0" + x.Day.ToString() : x.Day.ToString()) + "'";
         }
         //GET: Klient/Index
         public ActionResult Index()

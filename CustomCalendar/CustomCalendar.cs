@@ -136,7 +136,6 @@ namespace HotelWebSQL.Users
             writer.RenderBeginTag(HtmlTextWriterTag.Tr);
             writer.RenderBeginTag(HtmlTextWriterTag.Td);
             label.RenderControl(writer);
-            writer.RenderBeginTag(HtmlTextWriterTag.Tr);
             writer.RenderBeginTag(HtmlTextWriterTag.Td);
             textbox.RenderControl(writer);
             writer.RenderBeginTag(HtmlTextWriterTag.Td);

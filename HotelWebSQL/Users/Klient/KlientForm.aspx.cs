@@ -13,7 +13,6 @@ namespace HotelWebSQL.Users.Klient
         private int KlientID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            WebPartZone.EditVerb.Enabled = true;
 
         }
         protected void TwojeRezerwacje_Click(object sender, EventArgs e)

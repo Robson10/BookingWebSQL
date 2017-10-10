@@ -11,22 +11,22 @@
 </head>
 <body  style="background:lightgrey">
 <form id="form1" runat="server">
-        <div style="width:100%">
+                <center>
+        <div>
             Rezerwacja
             <div>
                 <div>
                     <table>
                         <tr>
-                    <cc2:CustomCalendar ID="KalendarzOd" runat="server" ImageButtonImageUrl="E:\Programming\Hotel\HotelWebSQL\HotelWebSQL\Images\calendar.jpg" style="width:30px" labelText="Od"/>
-                            </tr>
-                        <tr>
-                           <cc2:CustomCalendar ID="KalendarzDo" runat="server" ImageButtonImageUrl="E:\Programming\Hotel\HotelWebSQL\HotelWebSQL\Images\calendar.jpg" style="width:30px" labelText="Do"/>
-                            </tr>
+                            <cc2:CustomCalendar ID="KalendarzOd" runat="server" ImageButtonImageUrl="E:\Programming\Hotel\HotelWebSQL\HotelWebSQL\Images\calendar.jpg" style="width:30px;" labelText="Od"/>
+                             <cc2:CustomCalendar ID="KalendarzDo" runat="server" ImageButtonImageUrl="E:\Programming\Hotel\HotelWebSQL\HotelWebSQL\Images\calendar.jpg" style="width:30px;" labelText="Do"/>
+                        </tr>
                         </table>  
 
                 </div>
             </div>
         </div>
+    
         <div>
         <br />
             Pokoj:<asp:DropDownList ID="PokojIluOsobowy" runat="server" AutoPostBack="True" /> osobowy
@@ -62,6 +62,7 @@
         <asp:Button ID="Anuluj" runat="server" Text="Anuluj" OnClick="Anuluj_Click" style="border: none;font-size: 16px;color: wheat;background-color: dimgray;height:30px"/>
 
     </div>
+                    </center>
 </form>
 </body>
 </html>

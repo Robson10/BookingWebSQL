@@ -4,12 +4,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Zalogowano</h2>
+<h2>Logowanie</h2>
 
 @using (Html.BeginForm("Login", "Logowanie", FormMethod.Post))
 {
     <fieldset>
-        <legend>Mvc Simple Login Application Demo</legend>
 
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)

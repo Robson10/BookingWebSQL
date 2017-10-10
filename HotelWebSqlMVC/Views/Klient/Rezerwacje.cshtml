@@ -1,20 +1,19 @@
 ﻿@model HotelWebSqlMVC.Models.KlientRezerwacja
 
 @{
-    ViewBag.Title = "Rezerwacje";
+    ViewBag.Title = "Rezerwacja";
     Layout = "~/Views/Shared/_Layout - Klient.cshtml";
 }
 
-<h2>Rezerwacje</h2>
-<p>
-    @Html.ActionLink("Create New", "CreateRezerwacje")
-</p>
+<h2>Rezerwacja</h2>
+<h3 style="color:red">  
+    @if(Session["RezerwacjaTextErr"] != null) {<text> @Session["RezerwacjaTextErr"].ToString() </text>} 
+</h3>
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>KlientRezerwacja</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 

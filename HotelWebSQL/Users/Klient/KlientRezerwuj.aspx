@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="KlientRezerwuj.aspx.cs" Inherits="HotelWebSQL.Users.Klient.KlientRezerwuj" %>
 
-<%@ Register assembly="HotelWebSQL" namespace="HotelWebSQL.Users" tagprefix="cc1" %>
-<%@ Register assembly="CustomCalendar" namespace="HotelWebSQL.Users" tagprefix="cc2" %>
+<%@ Register Assembly="HotelWebSQL" Namespace="HotelWebSQL.Users" TagPrefix="cc1" %>
+<%@ Register Assembly="CustomCalendar" Namespace="HotelWebSQL.Users" TagPrefix="cc2" %>
 
 <!DOCTYPE html>
 
@@ -9,32 +9,26 @@
 <head runat="server">
     <title></title>
 </head>
-<body  style="background:lightgrey">
-<form id="form1" runat="server">
-                <center>
+<body style="background: lightgrey">
+    <form id="form1" runat="server">
+        <center>
         <div>
-            Rezerwacja
-            <div>
-                <div>
-                    <table>
-                        <tr>
-                            <cc2:CustomCalendar ID="KalendarzOd" runat="server" ImageButtonImageUrl="E:\Programming\Hotel\HotelWebSQL\HotelWebSQL\Images\calendar.jpg" style="width:30px;" labelText="Od"/>
-                             <cc2:CustomCalendar ID="KalendarzDo" runat="server" ImageButtonImageUrl="E:\Programming\Hotel\HotelWebSQL\HotelWebSQL\Images\calendar.jpg" style="width:30px;" labelText="Do"/>
-                        </tr>
-                        </table>  
-
-                </div>
-            </div>
+            <asp:Label Text="Rezerwacja" runat="server" />
+            <table>
+                <tr>
+                    <cc2:CustomCalendar ID="KalendarzOd" runat="server" ImageButtonImageUrl="E:\Programming\Hotel\HotelWebSQL\HotelWebSQL\Images\calendar.jpg" style="width:30px;" labelText="Od"/>
+                    <cc2:CustomCalendar ID="KalendarzDo" runat="server" ImageButtonImageUrl="E:\Programming\Hotel\HotelWebSQL\HotelWebSQL\Images\calendar.jpg" style="width:30px;" labelText="Do"/>
+                </tr>
+            </table>  
         </div>
     
         <div>
-        <br />
-            Pokoj:<asp:DropDownList ID="PokojIluOsobowy" runat="server" AutoPostBack="True" /> osobowy
+            <asp:Label Text="Pokoj" runat="server" />
+            <asp:DropDownList ID="PokojIluOsobowy" runat="server" AutoPostBack="True" /> 
+            <asp:Label Text="osobowy" runat="server" />
             <br />
             <br />
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             <asp:Button ID="Szukaj" runat="server" Text="Szukaj" OnClick="Szuakj_Click" style="border: none;font-size: 16px;color: wheat;background-color: dimgray;height:30px"/>
-    
        </div>
     <br/>
     <div>
@@ -57,12 +51,12 @@
     <br/>
 
     <br/>
-    <div style="width: 400px;">
+    <div>
         <asp:Button ID="Zatwierdz" runat="server" Text="Zatwierdz" OnClick="Zatwierdz_Click" style="border: none;font-size: 16px;color: wheat;background-color: dimgray;height:30px"/>&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="Anuluj" runat="server" Text="Anuluj" OnClick="Anuluj_Click" style="border: none;font-size: 16px;color: wheat;background-color: dimgray;height:30px"/>
 
     </div>
-                    </center>
-</form>
+    </center>
+    </form>
 </body>
 </html>

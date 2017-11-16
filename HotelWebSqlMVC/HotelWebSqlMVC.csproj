@@ -311,6 +311,7 @@
     <Content Include="Models\Rezerwacja.edmx.diagram">
       <DependentUpon>Rezerwacja.edmx</DependentUpon>
     </Content>
+    <Content Include="Database\Database_1.bak" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

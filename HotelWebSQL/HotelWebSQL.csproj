@@ -162,6 +162,7 @@
     <Content Include="EntityFramework\Osoba.edmx.diagram">
       <DependentUpon>Osoba.edmx</DependentUpon>
     </Content>
+    <Content Include="Database\Database_1.bak" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\calendar.jpg" />
     <Content Include="Scripts\bootstrap.js" />

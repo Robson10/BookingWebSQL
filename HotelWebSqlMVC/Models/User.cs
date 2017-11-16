@@ -31,7 +31,7 @@ namespace HotelWebSqlMVC.Models
         {
             using (var cn = new SqlConnection(@"Data Source=DESKTOP-M4NPT9R; Initial Catalog=Database_1;Integrated Security=SSPI"))
             {
-                string _sql = @"select Pra_Id from Database_1.dbo.Pracownik where Pra_Login='" + _username + "' and Pra_Haslo='" + _password + "'";
+                string _sql = @"select Pra_Id from Pracownik where Pra_Login='" + _username + "' and Pra_Haslo='" + _password + "'";
                 var cmd = new SqlCommand(_sql, cn);
                 cn.Open();
                 string id = "";
@@ -54,7 +54,7 @@ namespace HotelWebSqlMVC.Models
         {
             using (var cn = new SqlConnection(@"Data Source=DESKTOP-M4NPT9R; Initial Catalog=Database_1;Integrated Security=SSPI"))
             {
-                string query = @"select Osoba.O_ID from Database_1.dbo.Osoba where Osoba.O_Imie=@Login and Osoba.O_Nazwisko=@Password";
+                string query = @"select Osoba.O_ID from Osoba where Osoba.O_Imie=@Login and Osoba.O_Nazwisko=@Password";
                 using (SqlCommand cmd = new SqlCommand(query, cn))
                 {
                     cn.Open();

@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelWebSQL", "HotelWebSQL\HotelWebSQL.csproj", "{DD0568D2-07E4-408C-AFC1-9CDA4614E019}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCalendar", "CustomCalendar\CustomCalendar.csproj", "{91EAA578-074C-4BA0-AC1F-2CCCAA3DFE3D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelWebSqlMVC", "HotelWebSqlMVC\HotelWebSqlMVC.csproj", "{A0D0848C-B527-4FC1-AA85-5436FB296879}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{BD01E99C-5C4B-4260-980F-305D3CFA6941}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\Backup\Database_1.bak = ..\..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\Backup\Database_1.bak
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

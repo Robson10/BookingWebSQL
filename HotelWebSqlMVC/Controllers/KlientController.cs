@@ -124,10 +124,10 @@ namespace HotelWebSqlMVC.Controllers
     " order by Osoba.O_Imie, Osoba.O_Nazwisko, Rezerwacja.R_NaKiedy, Rezerwacja.R_DoKiedy asc";
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
-                try
-                {
+
                     conn.Open();
                     SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    da.SelectCommand.ExecuteNonQuery();
                     conn.Close();
                     DataSet ds = new DataSet();
                     da.Fill(ds);
@@ -144,9 +144,7 @@ namespace HotelWebSqlMVC.Controllers
                         });
                     }
                     return View(temp);
-                }
-                catch (Exception ex)
-                { return View(); }
+
             }
             return View();
         }

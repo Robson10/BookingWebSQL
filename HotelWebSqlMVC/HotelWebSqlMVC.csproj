@@ -279,6 +279,7 @@
       <DependentUpon>Rezerwacja.edmx</DependentUpon>
     </Content>
     <Content Include="Database\Database_1.bak" />
+    <Content Include="Database\Mucha Robert - Sprawozdanie.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
